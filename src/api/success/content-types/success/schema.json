@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "successes",
+  "info": {
+    "singularName": "success",
+    "pluralName": "successes",
+    "displayName": "success"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "session_id": {
+      "type": "string"
+    }
+  }
+}
