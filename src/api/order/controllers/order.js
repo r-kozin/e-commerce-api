@@ -55,28 +55,29 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
         },
       },
     ];
+    
+    //TODO: Move to webhook
+    // products.map(async (product) => {
+    //   //map through products
+    //   const itemInDB = await strapi
+    //     .service("api::product.product")
+    //     .findOne(product.id); //match products to product in db
 
-    products.map(async (product) => {
-      //map through products
-      const itemInDB = await strapi
-        .service("api::product.product")
-        .findOne(product.id); //match products to product in db
+    //   const numAvailable = itemInDB.available; //get available quantity for each product
+    //   const numOrdered = product.quantity; //get quantity ordered for each product
 
-      const numAvailable = itemInDB.available; //get available quantity for each product
-      const numOrdered = product.quantity; //get quantity ordered for each product
-
-      if (numOrdered > numAvailable) {
-        ctx.response.status = 400;
-        console.log(`There are only ${numAvailable} ${itemInDB.title} available`)
-        return `There are only ${numAvailable} ${itemInDB.title} available`;
-      } else {
-        await strapi.service("api::product.product").update(product.id, {
-          data: {
-            available: numAvailable - product.quantity, //subtract quantity ordered from available
-          },
-        });
-      }
-    });
+    //   if (numOrdered > numAvailable) {
+    //     ctx.response.status = 400;
+    //     console.log(`There are only ${numAvailable} ${itemInDB.title} available`)
+    //     return `There are only ${numAvailable} ${itemInDB.title} available`;
+    //   } else {
+    //     await strapi.service("api::product.product").update(product.id, {
+    //       data: {
+    //         available: numAvailable - product.quantity, //subtract quantity ordered from available
+    //       },
+    //     });
+    //   }
+    // });
 
     const lineItems = await Promise.all(
       products.map(async (product) => {

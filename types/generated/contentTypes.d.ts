@@ -840,36 +840,6 @@ export interface ApiSubCategorySubCategory extends Schema.CollectionType {
   };
 }
 
-export interface ApiSuccessSuccess extends Schema.CollectionType {
-  collectionName: 'successes';
-  info: {
-    singularName: 'success';
-    pluralName: 'successes';
-    displayName: 'success';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    session_id: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::success.success',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::success.success',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -890,7 +860,6 @@ declare module '@strapi/types' {
       'api::order.order': ApiOrderOrder;
       'api::product.product': ApiProductProduct;
       'api::sub-category.sub-category': ApiSubCategorySubCategory;
-      'api::success.success': ApiSuccessSuccess;
     }
   }
 }
